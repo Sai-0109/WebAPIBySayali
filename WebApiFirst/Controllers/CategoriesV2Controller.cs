@@ -19,6 +19,10 @@ namespace WebApiFirst.Controllers
             [HttpGet(Name = "GetAllCategories")]
             public IActionResult GetAllCategories(string type)
             {
+<<<<<<<<< Temporary merge branch 1
+=========
+            string Name = "Sayali";
+>>>>>>>>> Temporary merge branch 2
                 List<Category> categories = null;
                 bool expType;
                 bool isValidType = bool.TryParse(type, out expType);
