@@ -13,7 +13,7 @@ namespace WebApiFirst.Controllers
             AppDbContext _db;
             public CategoriesV2Controller(AppDbContext db)
             {
-            _db = db;
+                _db = db;
             }
 
             [HttpGet(Name = "GetAllCategories")]
