@@ -1,0 +1,66 @@
+﻿<h1>Create Product</h1>
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>
+            <input type="text" id="Name" />
+        </td>
+    </tr>
+    <tr>
+
+        <td>UnitPrice</td>
+        <td>
+            <input type="text" id="UnitPrice" />
+        </td>
+    <tr />
+    <tr>
+        <td>Category</td>
+        <td>
+            <input type="text" id="CategoryId" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="button" value="Create Product" class="btn btn-primary" id="btnCreate" />
+        </td>
+    </tr>
+</table>
+@section Scripts {
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () { // Ensure the DOM is ready before attaching the click event
+            $("#btnCreate").click(function () {
+                debugger;
+                var name = $("#Name").val();
+                var unitPrice = parseInt($("#UnitPrice").val());
+                var categoryId = parseInt($("#CategoryId").val());
+
+                var product = { Id:0,Name: name, UnitPrice: unitPrice, CategoryId: categoryId };
+
+                $.ajax({
+                    url: 'http://localhost:5063/api/products',
+                    type: 'POST',
+                    data: JSON.stringify(product),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    headers:{
+                        'Accept': 'application/json'
+                    },
+
+                    success: function (response) {
+                        alert('API call success');
+                    },
+                    error: function (reason) {
+                        alert('API call failed');
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
