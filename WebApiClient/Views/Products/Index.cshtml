@@ -1,0 +1,47 @@
+﻿<h1>Product List</h1>
+
+<a asp-action="Create" asp-controller="Products">Create New</a>
+<table class="table" id="products">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>UnitPrice</th>
+            <th>Category Id</th>
+
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@* <link href="~/css/jquery.data.Tables.css" rel="stylesheet" />
+<script href="~/js/dataTables.dataTables.js"><script/>
+ *@
+<link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet">
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: 'http://localhost:5063/api/products',
+                type: 'GET',
+                success: function (response) {
+                    console.log("response",response);
+                    $('#products').DataTable({
+                        data: response,
+                        columns: [
+                            { title: 'Id', data: 'id' },
+                            { title: 'Name', data: 'name' },
+                            { title: 'UnitPrice', data: 'unitPrice' },
+                             { title: 'CategoryId', data: 'categoryId' }
+                        ]
+                    });
+                },
+                error: function (reason) {
+                    alert('API call failed');
+                }
+            });
+        });
+    </script>
+}
