@@ -13,13 +13,12 @@ namespace WebApiFirst.Controllers
             AppDbContext _db;
             public CategoriesV2Controller(AppDbContext db)
             {
-            _db = db;
+                _db = db;
             }
 
             [HttpGet(Name = "GetAllCategories")]
             public IActionResult GetAllCategories(string type)
             {
-            string Name = "Sayali";
                 List<Category> categories = null;
                 bool expType;
                 bool isValidType = bool.TryParse(type, out expType);
